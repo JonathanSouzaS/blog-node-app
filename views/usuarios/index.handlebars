@@ -1,0 +1,66 @@
+<h2>Lista de usuários: </h2>
+<hr>
+
+{{#each usuarios}}
+<div class="card mt-3 mb-1">
+    <div class="card-body text-center">
+        <div class="row align-items-center">
+            <div class="col-md-2">
+                {{#if imagem}}
+                <img src="{{url}}" class="img-fluid rounded-circle" style="width: 150px; height: 150px;"
+                    alt="Foto de perfil">
+                {{else}}
+                <img src="/img/user_default.jpg" class="img-fluid rounded-circle" style="width: 150px; height: 150px;"
+                    alt="Foto de perfil">
+                {{/if}}
+            </div>
+            <div class="col-md-3">
+                <p>{{nome}}</p>
+            </div>
+            <div class="col-md-2">
+                <p>{{email}}</p>
+            </div>
+            <div class="col-md-2">
+                {{#if isAdmin}}
+                <button type="button" class="btn btn-primary mt-2">Usuário Admin</button><br />
+                {{else}}
+                <button type="button" class="btn btn-secondary mt-2">Usuário Padrão</button><br />
+                {{/if}}
+            </div>
+            <div class="col-md-2">
+                <input type="hidden" name="id" value="{{_id}}">
+                <button type="submit" class="btn btn-danger mt-2" data-bs-toggle="modal"
+                    data-bs-target="#staticBackdrop">Deletar perfil</button>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Deletar usuário?</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Essa ação não poderá ser desfeita.
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <div class="col-md-3">
+                                <form action="/usuarios/delete" method="post">
+                                    <input type="hidden" name="id" value="{{_id}}">
+                                    <button type="submit" class="btn btn-danger">Deletar perfil</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{else}}
+<h4 class="mt-4">Nenhum usuário cadastrado.</h4>
+{{/each}}

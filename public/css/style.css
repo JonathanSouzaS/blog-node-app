@@ -1,0 +1,29 @@
+.profile-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.edit-icon {
+    background-color: rgba(0, 0, 0, 0);
+    color: black;
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    cursor: pointer;
+}
+
+.edit-icon:hover {
+    color: black;
+}
+
+.profile-wrapper:hover .edit-icon {
+    opacity: 1;
+}
+
+.profileImage {
+    transition: filter 0.3s ease;
+}
+
+.profile-wrapper:hover .profileImage {
+    filter: brightness(60%);
+}
